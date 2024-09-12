@@ -60,4 +60,23 @@ int main()
     return 0;
     system("pause");
 
+
+
+    int mas[10], i, sum = 0;
+    cout << "Massive" << endl;
+    for (int i = 0; i < 10; i++) 
+    {
+            mas[i] = rand() % 100 - 50;
+            cout << setw(5) << mas[i];
+            if (mas[i] < 0) sum = sum + mas[i];
+     }
+    cout << endl << "Пары" << endl;
+    for (i = 0; i < 9; i++)
+    {
+        if (mas[i] > 0 && mas[i + 1] > 0) cout << mas[i] << "  " << mas[i + 1] << endl;
+        }
+       cout << endl << "Summa=" << sum << endl;
+   
+    return 0;
+    system("pause");
 }
