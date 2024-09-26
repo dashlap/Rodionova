@@ -1,3 +1,4 @@
+//сортировка чисел в массиве по убыванию
 #include <iomanip>
 #include <iostream>
 using namespace std;
