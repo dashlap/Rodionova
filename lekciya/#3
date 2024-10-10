@@ -106,6 +106,51 @@
 //}
 
 
+
+
+#include <iostream>
+#include <Windows.h>
+#include <iomanip>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+	int a[10][10], i, j;
+	srand((unsigned)time(NULL));
+	cout << "Исходная матрица" << endl;
+	int N = 10;
+	for (i = 0; i < N; i++)
+	{
+		for (j = 0; j < N; j++)
+		{
+			a[i][j] = rand() % 10;
+			cout << setw(4) << a[i][j];
+		}
+		cout << endl;
+	}
+
+
+	int b[3][3];
+	ifstream fin("data.txt");
+	cout << "Исходная матрица B" << endl;
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			fin >> b[i][j];
+			cout << setw(4) << b[i][j];
+		}
+		cout << endl;
+	}
+	fin.close();
+	system("pause");
+}
+
+
+
 #include <iostream>
 #include <Windows.h>
 #include <iomanip>
@@ -146,5 +191,20 @@ int main()
 		cout << endl;
 	}
 	fin.close();
+	int sum;
+	for (i = 0; i < 3; i++)
+	{
+		sum = 0;
+		for (j = 0; j < 3; j++)
+			sum = sum + b[i][j];
+		cout << "Сумма " << i << " строки =" << sum << endl;
+	}
+	for (j = 0; j < 3; j++)
+	{
+		sum = 0;
+		for (i = 0; i < 3; i++)
+			sum = sum + b[i][j];
+		cout << "Сумма " << j << " столбца =" << sum << endl;
+	}
 	system("pause");
 }
