@@ -1,3 +1,4 @@
+//основа для файла 4.1
 #include <iomanip>
 #include <iostream>
 
