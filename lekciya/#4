@@ -1,0 +1,34 @@
+#include <iomanip>
+#include <iostream>
+
+using namespace std;
+
+int a[10];
+void main() {
+	int N, i, sum;
+	cout << "Введите количество до 10" << endl;
+	cin >> N;
+	for (i = 0; i < N; i++)
+		a[i] = rand() % 10;
+	cout << "Исходный массив" << endl;
+	void myprint(int);
+	myprint(N);
+	int mysum(int);
+	sum = mysum(N);
+	cout << "sum=" << sum << endl;
+	system("pause");
+}
+
+void maprint(int n) {
+	for (int i = 0; i < n; i++)
+		cout << setw(4) << a[i];
+	cout << endl;
+}
+
+int mysum(int n) {
+	int s = 0;
+	for (int i = 0; i < n; i++)
+		s += a[i];
+	return s;
+
+}
