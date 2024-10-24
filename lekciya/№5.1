@@ -1,0 +1,93 @@
+#include <iomanip>
+#include <iostream>
+
+using namespace std;
+
+int a[10];
+int main() {
+	setlocale(LC_ALL, "ru");
+	srand((unsigned)time(NULL));
+	int N, i, sum;
+	void myprint(int n);//отмечаем 
+	void mymax(int n, int* m, int*);
+	int mymin(int n, int*);
+
+	cout << "Введите количество до 10" << endl;
+	cin >> N;
+	for (i = 0; i < N; i++)
+		a[i] = rand() % 10 - 5;
+	cout << "Исходный массив" << endl;
+	void myprint(int);
+	myprint(N);
+
+	int max, imax;
+	mymax(N, &max, &imax);
+
+
+	cout << endl << "Максимальный элемент массива = " << max << endl;
+	cout << endl << "Индекс максимального элемента массива = " << imax << endl;
+
+	void mydel(int &n, int imax);
+	mydel(N, imax);
+	cout << "Массив после удаления максимума" << endl;
+	myprint(N);
+
+	int inmin = -1;
+	int min = mymin(N, &inmin);
+
+	cout << endl << "Минимальный элемент массива = " << min << endl;
+	cout << endl << "Индекс минимального элемента массива = " << inmin << endl;
+
+	void mydel(int& n, int inmin);
+	mydel(N, inmin);
+	cout << "Массив после удаления минимума" << endl;
+	myprint(N);
+
+	int num;
+	cout << "Введите номер удаляемого элемента" << endl;
+	cin >> num;
+	mydel(N, num);
+
+	cout << "Введите номер удаляемого элемента с индексом " << endl;
+	myprint(N);
+	system("pause");
+}
+
+void myprint(int n) {
+	for (int i = 0; i < n; i++)
+		cout << setw(3) << a[i];
+	cout << endl;
+}
+
+
+void mymax(int n, int* m, int* index) {
+	*m = a[0];
+	*index = 0;
+	for (int i = 0; i < n; i++)
+		if (a[i] > *m) {
+			*m = a[i];
+			*index = i;
+		}
+
+}
+
+int mymin(int n, int* index) {
+	int min = a[0];
+	int imin = 0;
+	for (int i = 0; i < n; i++)
+		if (a[i] < min) {
+			min = a[i];
+			imin = i;
+		}
+	*index = imin;
+	return min;
+}
+
+void mydel(int &n, int imax) {
+	if (imax >= 0 && imax < n) {
+
+		for (int i = imax; i < n - 1; i++) a[i] = a[i + 1];
+		n = n - 1;
+	}
+	else cout << "Удаление невозможно" << endl;
+}
