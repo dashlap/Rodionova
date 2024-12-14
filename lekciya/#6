@@ -1,0 +1,101 @@
+#include <iostream> 
+#include <iomanip>  
+#include <cstdlib> 
+#include <ctime> 
+using namespace std; 
+ 
+void myprint(int* m, int n) 
+{ 
+    for (int i = 0; i < n; i++) 
+        cout << setw(4) << m[i]; 
+    cout << endl; 
+} 
+ 
+void random(int* m, int n) 
+{ 
+    for (int i = 0; i < n; i++) 
+        m[i] = rand() % 30 - 10; 
+} 
+ 
+int findMax(int* m, int n) 
+{ 
+    int maxIndex = 0; 
+    for (int i = 1; i < n; i++) 
+    { 
+        if (m[i] > m[maxIndex]) 
+            maxIndex = i; 
+    } 
+    return maxIndex; // Возвращаем индекс максимума 
+} 
+ 
+int findMin(int* m, int n) 
+{ 
+    int minIndex = 0; 
+    for (int i = 1; i < n; i++) 
+    { 
+        if (m[i] < m[minIndex]) 
+            minIndex = i; 
+    } 
+    return minIndex; // Возвращаем индекс минимума 
+} 
+ 
+void removeElement(int* m, int& n, int index) 
+{ 
+    for (int i = index; i < n - 1; i++) 
+    { 
+        m[i] = m[i + 1]; // Сдвигаем элементы влево 
+    } 
+    n--; // Уменьшаем размер массива на 1 
+} 
+ 
+int main() 
+{ 
+    setlocale(LC_ALL, "ru"); 
+    srand(time(NULL)); 
+    int a[15], b[25], Na, Nb; 
+    int* pa = &a[0]; 
+    int* pb = &b[0]; 
+ 
+    cout << "Введите количество элементов массива A (до 15): "; 
+    cin >> Na; 
+    random(pa, Na); 
+    cout << "Массив A" << endl; 
+    myprint(pa, Na); 
+ 
+    cout << endl << "Введите количество элементов массива B (до 25): "; 
+    cin >> Nb; 
+    random(pb, Nb); 
+    cout << "Массив B" << endl; 
+    myprint(pb, Nb); 
+ 
+    int maxIndexA = findMax(pa, Na); 
+    int minIndexA = findMin(pa, Na); 
+ 
+    cout << "Максимум в A: " << pa[maxIndexA] << endl; 
+    cout << "Минимум в A: " << pa[minIndexA] << endl; 
+ 
+    removeElement(pa, Na, maxIndexA); 
+    if (minIndexA > maxIndexA) minIndexA--; 
+    removeElement(pa, Na, minIndexA); 
+ 
+    cout << "Массив A после удаления максимума и минимума:" << endl; 
+    myprint(pa, Na); 
+ 
+    int maxIndexB = findMax(pb, Nb); 
+    int minIndexB = findMin(pb, Nb); 
+ 
+    cout << "Максимум в B: " << pb[maxIndexB] << endl; 
+    cout << "Минимум в B: " << pb[minIndexB] << endl; 
+ 
+ 
+    removeElement(pb, Nb, maxIndexB); 
+ 
+    if (minIndexB > maxIndexB) minIndexB--; 
+    removeElement(pb, Nb, minIndexB); 
+ 
+    cout << "Массив B после удаления максимума и минимума:" << endl; 
+    myprint(pb, Nb); 
+ 
+    system("pause"); 
+    return 0; 
+}
