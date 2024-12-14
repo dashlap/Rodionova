@@ -1,0 +1,51 @@
+#include <iostream>
+#include <iomanip>
+#include<stdio.h>
+#include<string>
+#include<ctype.h>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "ru");
+    srand(time(NULL));
+    char str1[80];
+    cout << "Введите 1 строку: ";
+    cin >> str1;
+    int n1 = strlen(str1);
+    cout << endl;
+    cout << "Эта строка: " << str1 << "  " << "её длина: " << n1 << " символов" << endl;
+    cout << endl; 
+    char ss[80];
+    strcpy_s(ss, str1);
+    cout << "Копия строки: " << ss << endl;
+    cout << endl;
+    int r = strcmp(str1, "Petrov");
+    if (!r)cout << "Это Petrov" << endl;
+    else cout << "Это не Petrov" << endl;
+    int k=0, m=0, p=0;
+    for (int i = 0; i < n1; i++) {
+        if (isdigit(str1[i]))k++;
+        if (isalpha(str1[i]))m++;
+        if (isalpha(str1[i])&&isupper(str1[i]))p++;
+    }
+    cout << endl;
+    cout << "В слове " << k << " цифр" << endl;
+    cout << "В слове " << m << " букв" << endl;
+    cout << "В слове " << p << " заглавных букв" << endl;
+    char str2[80];
+    cout << "Введите 2 строку: ";
+    gets_s(str2);
+    gets_s(str2);
+    int n2 = strlen(str2);
+    cout << endl;
+    cout << "Эта строка: " << str2 << "  " << "её длина: " << n2 << " символов" << endl;
+    cout << endl; 
+
+    string str3;
+    cout << "Введите 3 строку" << endl;
+    getline(cin,str3);
+    int n3 = str3.length();
+    cout << endl;
+    cout << "Эта строка: " << str3 << "  " << "её длина: " << n3 << " символов" << endl;
+}
