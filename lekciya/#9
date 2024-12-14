@@ -1,0 +1,72 @@
+#include <iostream>
+#include<time.h>
+#include<iomanip>
+using namespace std;
+class ODMAS
+{
+private:
+	int N;
+	int* mas;
+public:
+	ODMAS(int n, int d = 10, int c = 0)
+	{
+		N = n;
+		mas = new int[N];
+		srand((unsigned)time(NULL));
+		for (int i = 0; i < N; i++)
+			mas[i] = c + rand() % (d - c);
+	}
+	void  printmas()
+		{
+			for (int i = 0; i < N; i++)
+			cout << setw(3) << mas[i];
+		}
+		~ODMAS()
+		{
+			delete[]mas;
+		}
+
+		void sum2mas(ODMAS &p)
+		{
+			int minN = (N < p.N) ? N : p.N;
+			for (int i = 0; i < minN; i++)
+				mas[i] = mas[i] + p.mas[i];
+		}
+		void ruz2mas(ODMAS &p)
+		{
+			int minN = (N < p.N) ? N : p.N;
+			for (int i = 0; i < minN; i++)
+				mas[i] = mas[i] - p.mas[i];
+		}
+
+};
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+
+	ODMAS d1(15);
+	cout << "объект 1: " << endl;
+	d1.printmas();
+
+	cout << "\n" << endl;
+
+	ODMAS d2(15, 80);
+	cout << "объект 2: " << endl;
+	d2.printmas();
+	d2.sum2mas(d1);
+	cout << "\n" << endl;
+	cout << "сумма объектов d2 и d1" << endl << endl;
+	d2.printmas();
+
+	ODMAS d3(10, 80);
+	cout << "объект 3: " << endl;
+	d3.printmas();
+	d3.sum2mas(d1);
+	cout << "\n" << endl;
+	cout << "d3 = разность объектов d3 и d1" << endl << endl;
+	d2.printmas();
+
+	system("pause");
+	return 0;
+}
