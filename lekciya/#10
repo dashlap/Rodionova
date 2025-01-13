@@ -1,0 +1,51 @@
+#include <iostream>
+#include <iomanip>
+#include <vector> // 
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "ru");
+    vector <int> vec1(3, 8);//vec1(количество чисел, указываемое число)
+    vec1.push_back(13);//добавление элементов в конец
+    vec1.push_back(2025);
+    cout << "Исходный вектор 1" << endl;
+    for (int i = 0; i < vec1.size(); i++) //размерность вектора i без ввода переменных
+    {
+        cout << setw(5) << vec1[i]; //определяет количество выводимых чисел
+    }
+    cout << endl;
+    vec1.pop_back();//удаление последнего элемента
+    cout << "Удаление элемента" << endl;
+    for (int i = 0; i < vec1.size(); i++) //размерность вектора i без ввода переменных
+    {
+        cout << setw(5) << vec1[i]; //определяет количество выводимых чисел
+    }
+    cout << endl;
+    int p = vec1.front(), pp = vec1.back();
+    cout << "first elem = " << p << endl;
+    cout << "last elem =" << pp << endl;//определение 1 и последнего элемента вектора
+
+    vector <int> vec2{ 0,1,2,3,4,5,6,7,8,9 };//инициализация вектора через запятую
+    vec2.push_back(777);//добавление элементов в конец
+    vec2.push_back(20);
+    cout << "Исходный вектор 2" << endl;
+    for (int i = 0; i < vec2.size(); i++) //размерность вектора i без ввода переменных
+    {
+        cout << setw(5) << vec2[i]; //определяет количество выводимых чисел
+    }
+    cout << endl;
+    vec2.pop_back();
+    vec2.pop_back();
+    cout << "Удаление элемента" << endl;
+    for (int i = 0; i < vec2.size(); i++) //размерность вектора i без ввода переменных
+    {
+        cout << setw(5) << vec2[i]; //определяет количество выводимых чисел
+    }
+    cout << endl;
+    p = vec2.front(); pp = vec2.back();
+    cout << "first elem = " << p << endl;
+    cout << "last elem =" << pp << endl;//определение 1 и последнего элемента вектора
+
+    system("pause");
+}
