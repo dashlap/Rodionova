@@ -1,0 +1,83 @@
+//класс с вектором
+
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include <time.h>
+using namespace std;
+class MAS {
+private:
+    vector <int> m;
+public:
+    MAS(int n, int k=0, int d=10) {
+        
+        srand((unsigned)time(NULL));
+        for (int i = 0; i < n; i++)
+            m.push_back(k + rand() % (d - k));//числовой массив
+    }
+    void myprint() {
+        for (int i = 0; i < m.size(); i++)
+            cout << setw(4) << m[i];
+        cout << endl;
+
+    }
+    void ins_end(int p) {
+        m.push_back(p);
+    }
+    void ins_first(int p) {
+        m.insert(m.begin(), p);//вводим переменную для добавления элементов
+    }
+    void del_end() {
+        m.pop_back();
+    }
+    void del_first() {
+        m.erase(m.begin());//переменная не нужна
+    }
+    friend void add_vec(MAS& a, MAS& b);//дружественная функция для класса add_vec, иначе не даст доступ к m
+};
+void add_vec(MAS& a, MAS& b) {
+    for (int i = 0; i < a.m.size(); i++)
+        a.m[i] = a.m[i] + b.m[i];
+}
+
+int main()
+{
+    setlocale(LC_ALL, "ru");
+    cout << "Обьект 1" << endl;
+    MAS m1(7);
+    m1.myprint();
+
+    //cout << "Обьект 1 после добавления в конец" << endl;
+    //m1.ins_end(77);// применение функции 
+    //m1.myprint();// вывод
+
+    //cout << "Обьект 1 добавление в начало" << endl;
+    //m1.ins_first(999); // применение функции
+    //m1.myprint();
+
+    cout << "Обьект 2" << endl;
+    MAS m2(7);
+    m2.myprint();
+
+    //cout << "Обьект 2 после удаление в конце" << endl;
+    //m2.del_end();// применение функции 
+    //m2.myprint();
+
+    //cout << "Обьект 2 удаление в начале" << endl;
+    //m2.del_first(); // применение функции
+    //m2.myprint();
+    
+    //далее нужно сравнять количество элементов в векторе, 
+    //поэтому либо комментируем до начальных значений, 
+    //либо добавляем в ручную недостающие
+    /*cout << "Добавить элемент" << endl;
+    m2.ins_end(100);
+    m2.myprint();*/
+
+    cout << "Сумма 1 и 2 обьектов" << endl; //сумма векторов
+    add_vec(m1, m2);
+    m1.myprint();
+
+    system("pause");
+    return 0;
+}
